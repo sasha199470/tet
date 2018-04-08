@@ -29,7 +29,8 @@
            name="date"
            matInput
            placeholder="Дата выдачи"
-           [disabled]="!type.date">
+           [disabled]="!type.date"
+           mask="00.00.0000">
     <i
       *ngIf="copy.date" (click)="copyField(copy.date)" class="material-icons">content_copy</i>
   </mat-form-field>

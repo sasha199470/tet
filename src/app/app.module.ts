@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {NgxMaskModule} from 'ngx-mask';
 
 import { AppComponent } from './components/root-component/app.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -23,7 +23,8 @@ import {UserService} from './services/user.service';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [UserService],
   bootstrap: [AppComponent]
