@@ -4,8 +4,14 @@
            placeholder="Фамилия"
            [(ngModel)]="user.surname"
            name="surname"
-           [disabled]="!type.surname"
-    disabled="true">
+           [formControl]="onlyRusTextFormControl"
+           [disableControl]="!type.surname">
+    <mat-error *ngIf="onlyRusTextFormControl.hasError('pattern') && !onlyRusTextFormControl.hasError('required')">
+      Фамилия должна содержать только <strong>русские буквы</strong>
+    </mat-error>
+    <mat-error *ngIf="onlyRusTextFormControl.hasError('required')">
+      Фамилия <strong>обязательна</strong>
+    </mat-error>
     <i
       (click)="copyField(copy.surname)" *ngIf="copy.surname" class="material-icons">content_copy</i>
   </mat-form-field>
