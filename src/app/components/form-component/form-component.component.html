@@ -21,8 +21,8 @@
       *ngIf="copy.doc" (click)="copyField(copy.doc)" class="material-icons">content_copy</i>
     <mat-select
             [(ngModel)]="user.doc"
-                name="doc"
-                placeholder="Тип документа"
+            name="doc"
+            placeholder="Тип документа"
             [disabled]="!type.doc">
       <mat-option *ngFor="let option of optionDoc" [value]="option">
         {{option}}
@@ -35,8 +35,19 @@
            name="date"
            matInput
            placeholder="Дата выдачи"
-           [disabled]="!type.date"
-           mask="00.00.0000">
+           [formControl]="dateFormControl"
+           [disableControl]="!type.date"
+           dropSpecialCharacters="false"
+           mask="00.00.0000">       
+    <mat-error *ngIf="!dateFormControl.hasError('required') && dateFormControl.hasError('dateMin')">
+      Дата должна быть <strong>позднее 01.01.1991</strong>
+    </mat-error>
+    <mat-error *ngIf="!dateFormControl.hasError('required') && dateFormControl.hasError('dateInvalid')">
+      Не верный формат <strong>(ДД.ММ.ГГГГ)</strong> или дата <strong>не корректна</strong>
+    </mat-error>
+    <mat-error *ngIf="dateFormControl.hasError('required')">
+      Дата <strong>обязательна</strong>
+    </mat-error>
     <i
       *ngIf="copy.date" (click)="copyField(copy.date)" class="material-icons">content_copy</i>
   </mat-form-field>
@@ -46,7 +57,15 @@
            name="code"
            matInput
            placeholder="Код подразденения"
-           [disabled]="!type.code">
+           [formControl]="onlyNumberFormControl"
+           [disableControl]="!type.code"
+           mask=000-000>
+    <mat-error *ngIf="onlyNumberFormControl.hasError('pattern') && !onlyNumberFormControl.hasError('required')">
+      Код должн содержать только <strong>цифры</strong>
+    </mat-error>
+    <mat-error *ngIf="onlyNumberFormControl.hasError('required')">
+      Код <strong>обязателен</strong>
+    </mat-error>
     <i
       *ngIf="copy.code" (click)="copyField(copy.code)" class="material-icons">content_copy</i>
   </mat-form-field>
