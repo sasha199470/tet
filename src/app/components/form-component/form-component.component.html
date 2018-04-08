@@ -1,0 +1,46 @@
+<div>
+  <mat-form-field class="full-width">
+    <input matInput
+           placeholder="Фамилия"
+           [(ngModel)]="user.surname"
+           name="surname"
+           [disabled]="!type.surname"
+    disabled="true">
+    <i
+      (click)="copyField(copy.surname)" *ngIf="copy.surname" class="material-icons">content_copy</i>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <i
+      *ngIf="copy.doc" (click)="copyField(copy.doc)" class="material-icons">content_copy</i>
+    <mat-select
+            [(ngModel)]="user.doc"
+                name="doc"
+                placeholder="Тип документа"
+            [disabled]="!type.doc">
+      <mat-option *ngFor="let option of optionDoc" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field  class="full-width">
+    <input [(ngModel)]="user.date"
+           name="date"
+           matInput
+           placeholder="Дата выдачи"
+           [disabled]="!type.date">
+    <i
+      *ngIf="copy.date" (click)="copyField(copy.date)" class="material-icons">content_copy</i>
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input [(ngModel)]="user.code"
+           name="code"
+           matInput
+           placeholder="Код подразденения"
+           [disabled]="!type.code">
+    <i
+      *ngIf="copy.code" (click)="copyField(copy.code)" class="material-icons">content_copy</i>
+  </mat-form-field>
+</div>

@@ -1,0 +1,28 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-form-field>
+  <mat-select
+    [(ngModel)]="typeChange"
+    name="typeChange">
+    <mat-option
+      *ngFor="let option of optionChange"
+      [value]="option.value">
+      {{option.viewValue}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<div class="container">
+  <div class="row">
+    <app-form-component
+    [user]="user"
+    [type]="type"
+    [copy]="typeChange"
+    (change)="copyField($event)"></app-form-component>
+  </div>
+  <div class="row">
+    <app-form-component
+    [type]="typeChange"
+    [user]="changeUser"
+    [copy]="type"></app-form-component>
+  </div>
+</div>
+
